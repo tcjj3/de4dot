@@ -111,7 +111,13 @@ namespace de4dot.cui {
 
 				var options = new FilesDeobfuscator.Options();
 				ParseCommandLine(args, options);
-				new FilesDeobfuscator(options).DoIt();
+				//new FilesDeobfuscator(options).DoIt();
+				var fd = new FilesDeobfuscator(options);
+				var thread = new Thread(fd.DoIt, 1024 * 1024 * 64);
+				thread.Start();
+				thread.Join();
+				while (thread.IsAlive)
+					Thread.Sleep(500);
 			}
 			catch (ExitException ex) {
 				exitCode = ex.code;
