@@ -25,6 +25,7 @@ using de4dot.code;
 using de4dot.code.deobfuscators;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 
 namespace de4dot.cui {
 	class ExitException : Exception {
